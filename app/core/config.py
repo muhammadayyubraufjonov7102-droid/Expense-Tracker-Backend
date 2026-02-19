@@ -5,6 +5,8 @@ BASE_DIR = Path(__file__).parent.parent.parent
 
 class Settings(BaseSettings):
     DB_URL: str = "sqlite:///dev.db"
+    JWT_SECRET_KEY = "secret"
+    JWT_ALGO = "HS256"
     
     model_config = {
         "env_file" : BASE_DIR / ".env"
