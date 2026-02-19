@@ -7,8 +7,13 @@ class SignUp(BaseModel):
 
 class Login(BaseModel):
     username: str
-    password: s
+    password: str
     
+class LoggedInUser(BaseModel):
+    user_id: int
+    
+class LoginResponse(BaseModel):
+    access_toke: str
     
 class SignUpResponse(BaseModel):
     id: int

@@ -7,7 +7,7 @@ from app.core.security import hash_password, verify_password, create_accsess_tok
 
 
 def handle_singup(data: SignUp, db: Session):
-    user = db.execute(select(User).where(User.username == data.username))
+    user = db.execute(select(User).where(User.username == data.username)).scalar()
     if user:
         raise HTTPException(status_code=409, detail="Username alerady exist!")
     
