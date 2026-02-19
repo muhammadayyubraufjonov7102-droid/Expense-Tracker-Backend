@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from app.db.models import User
 from app.schemas.auth_schemas import SignUp, Login
 from fastapi import HTTPException
-from app.core.security import hash_password, verify_password
+from app.core.security import hash_password, verify_password, create_accsess_token
 
 
 def handle_singup(data: SignUp, db: Session):
@@ -25,5 +25,7 @@ def handle_login(data: Login, db: Session):
     
     if verify_password(data.password, user.password):
         raise HTTPException(status_code=401, detail="Username or password is invalid!")
-    
+    return {
+        "access_toke": create_accsess_token(user.id)
+    }
     
